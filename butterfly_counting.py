@@ -31,17 +31,16 @@ def sort_and_deduplicate(l):
 butterfly = list()
 
 
-def second_level_neighbors(second_level_nbrs):
+def second_level_neighbors(second_level_nbrs, i, j, k):
     for l in second_level_nbrs:
         if l == j:
             continue
         if i in fb_data.neighbors(l):
-            print("adding a butterfly")
             butterfly_content = sorted([str(i), str(j), str(k), str(l)])
             butterfly.append(butterfly_content)
 
 
-def current_node_neighbors(current_nbrs):
+def current_node_neighbors(current_nbrs, i):
     global j, k, second_level_nbrs
     for j in set(current_nbrs):
         bottom_node_nbrs = fb_data.neighbors(j)
@@ -49,13 +48,13 @@ def current_node_neighbors(current_nbrs):
             if k == i:
                 continue
             second_level_nbrs = fb_data.neighbors(k)
-            second_level_neighbors(second_level_nbrs)
+            second_level_neighbors(second_level_nbrs, i, j, k)
 
 
 def find_butterflies():
     for i in set(top_nodes):
         current_nbrs = fb_data.neighbors(i)
-        current_node_neighbors(current_nbrs)
+        current_node_neighbors(current_nbrs, i)
 
 find_butterflies()
 print("The butterflies are: ",sort_and_deduplicate(butterfly))
