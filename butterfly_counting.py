@@ -78,28 +78,6 @@ bf_counted, complete_bfc, edge_dist = exact_bfc()
 print("Number of Butterflies counted is {}".format(bf_counted))
 
 
-def vertex_distribution(complete_dict):
-    percentage = dict()
-    for key, value in complete_dict.items():
-        for i in value:
-            try:
-                percentage[i] += 1
-            except:
-                percentage[i] = 1
-    return percentage
-
-
-def edge_distribution(edges):
-    edge_dist_dict = {}
-    for item in edges:
-        if item in edge_dist_dict.keys() and (item[1], item[0]) not in edge_dist_dict.keys():
-            edge_dist_dict[item] += 1
-        else:
-            edge_dist_dict[item] = 1
-
-    return edge_dist_dict
-
-
 names = list(complete_bfc.keys())
 values = list(complete_bfc.values())
 #
